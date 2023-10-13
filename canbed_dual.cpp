@@ -140,7 +140,7 @@ void CANBedDual::send(unsigned long id, unsigned char ext, unsigned char rtr, un
     dsend[7] = fd;
     dsend[8] = len;
 
-    for(int i=0; i<dsend[len]; i++)
+    for(int i=0; i<dsend[8]; i++)
     {
         dsend[i+9] = dta[i];
     }
