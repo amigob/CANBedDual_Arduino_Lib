@@ -140,7 +140,7 @@ void CANBedDual::send(unsigned long id, unsigned char ext, unsigned char rtr, un
     dsend[7] = fd;
     dsend[8] = len;
 
-    for(int i=0; i<dsend[8]; i++)
+    for(int i=0; i<dsend[len]; i++)
     {
         dsend[i+9] = dta[i];
     }
@@ -204,9 +204,9 @@ byte CANBedDual::read(unsigned long *id, int *ext, int *rtr, int *fd, int *len, 
         CANI2C.write(canNum ? 0x17 : 0x07);
         CANI2C.endTransmission();
 
-        CANI2C.requestFrom(0x41, 8);
+        CANI2C.requestFrom(0x41, dtaLen);
 
-        for(int i=0; i<8; i++)
+        for(int i=0; i<dtaLen; i++)
         {
             str[i]= CANI2C.read();
         }
